@@ -34,6 +34,6 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
 - [Hammad Shamim](link to your profile or contact information)
 
 ## License
-This project is licensed under the [MIT License](link to license file).
+This project is licensed under the [MIT License](LICENSE).
 
 Feel free to customize this README.md according to your project's specific details and requirements. Good luck with your Cloud Data Processing Pipeline project!
