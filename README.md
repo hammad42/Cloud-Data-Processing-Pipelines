@@ -31,7 +31,7 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
 10. Clean up resources after processing.
 
 ## Contributors
-- [Hammad Shamim](link to your profile or contact information)
+- [Hammad Shamim](https://www.linkedin.com/in/hammad-shamim-6a2344128/)
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
