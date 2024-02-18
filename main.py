@@ -1,14 +1,14 @@
 from pyspark.sql import SparkSession
 import warnings
 from google.cloud import storage
+
 def storage_to_bigquery():    
     
 
-
     warnings.filterwarnings("ignore")
-    bucket = "data-bucket4200"
+    bucket = "data-bucket52"
     storage_client = storage.Client() # global storage client
-    spark = SparkSession.builder.appName("ReadParquetFromCloudStorage").config("spark.jars", "gs://data-bucket4200/gcs-connector-hadoop2-2.1.1.jar").getOrCreate()
+    spark = SparkSession.builder.appName("ReadParquetFromCloudStorage").config("spark.jars", "gs://data-bucket52/files/gcs-connector-hadoop2-2.1.1.jar").getOrCreate()
     spark.conf.set('temporaryGcsBucket', bucket)
     blobs = list(storage_client.list_blobs(storage_client.get_bucket(bucket),prefix="processing_zone/data_sample"))
     print("count of blobs is {}".format(len(blobs)))
