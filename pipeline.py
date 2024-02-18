@@ -32,17 +32,14 @@ with DAG("ETL_Pipeline",default_args=default_args,schedule_interval=None,max_act
         task_id='create_dataproc_cluster',
         cluster_name='dataproc-cluster2',  # Dynamically named cluster
         num_workers=2,
-        # enable_component_gateway=True,
+        enable_component_gateway=True,
         master_machine_type='n2-standard-2',
         worker_machine_type='n2-standard-2',
         region='us-central1',  # Replace with your desired region
-        project_id='playground-s-11-5c4091ae'
+        project_id='playground-s-11-5c4091ae',
+        image_version="2.1-debian11"
     )
-    # job = dataproc_v1.Job()
-    # job.hadoop_job.main_jar_file_uri = "main_jar_file_uri_value"
-    # job.placement.cluster_name = "cluster_name_value"
-    # job.pyspark_job.main_python_file_uri
-    # job.__dict__()
+
     job_={
         "placement":{"cluster_name": 'dataproc-cluster2'},
         "pyspark_job":{"main_python_file_uri":"gs://data-bucket52/files/main.py"}
@@ -59,4 +56,11 @@ with DAG("ETL_Pipeline",default_args=default_args,schedule_interval=None,max_act
 
     )
 
-    dataproc_cluster_running >> create_cluster >> submit_job
+    delete_cluster = DataprocDeleteClusterOperator(
+        task_id='delete_dataproc_cluster',
+        cluster_name='dataproc-cluster2',  # Dynamically named cluster
+        region='us-central1',  # Replace with your desired region
+        project_id='playground-s-11-5c4091ae',
+    )
+
+    dataproc_cluster_running >> create_cluster >> submit_job >> delete_cluster
