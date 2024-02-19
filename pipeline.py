@@ -21,6 +21,7 @@ default_args = {
     'backfill': False,
     'retry_delay': timedelta(minutes=5)
 }
+project_id_="playground-s-11-f9f2edcb"
 
 with DAG("ETL_Pipeline",default_args=default_args,schedule_interval=None,max_active_runs=1,catchup=False) as dag:
         
@@ -36,7 +37,7 @@ with DAG("ETL_Pipeline",default_args=default_args,schedule_interval=None,max_act
         master_machine_type='n2-standard-2',
         worker_machine_type='n2-standard-2',
         region='us-central1',  # Replace with your desired region
-        # project_id='playground-s-11-5c4091ae',
+        project_id=project_id_,
         image_version="2.1-debian11"
     )
 
@@ -47,7 +48,7 @@ with DAG("ETL_Pipeline",default_args=default_args,schedule_interval=None,max_act
 
     }
     submit_job = DataprocSubmitJobOperator(
-        # project_id='playground-s-11-5c4091ae',
+        project_id=project_id_,
         region='us-central1',
         job=job_,
         task_id='submit_spark_job',
@@ -60,7 +61,7 @@ with DAG("ETL_Pipeline",default_args=default_args,schedule_interval=None,max_act
         task_id='delete_dataproc_cluster',
         cluster_name='dataproc-cluster2',  # Dynamically named cluster
         region='us-central1',  # Replace with your desired region
-        # project_id='playground-s-11-5c4091ae',
+        project_id=project_id_,
     )
 
     dataproc_cluster_running >> create_cluster >> submit_job >> delete_cluster
