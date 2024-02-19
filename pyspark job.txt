@@ -1,0 +1,18 @@
+POST /v1/projects/playground-s-11-f9f2edcb/regions/us-central1/jobs:submit/
+{
+  "projectId": "playground-s-11-f9f2edcb",
+  "job": {
+    "placement": {
+      "clusterName": "cluster-045f"
+    },
+    "statusHistory": [],
+    "reference": {
+      "jobId": "job-b4cbed80",
+      "projectId": "playground-s-11-f9f2edcb"
+    },
+    "pysparkJob": {
+      "mainPythonFileUri": "gs://data-bucket522/files/main.py",
+      "properties": {}
+    }
+  }
+}
