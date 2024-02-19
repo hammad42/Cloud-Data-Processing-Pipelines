@@ -13,6 +13,7 @@ from datetime import (
     datetime, 
     timedelta
 )
+import os
 # from google.cloud import dataproc_v1
 
 default_args = {
@@ -21,8 +22,8 @@ default_args = {
     'backfill': False,
     'retry_delay': timedelta(minutes=5)
 }
-project_id_="playground-s-11-f9f2edcb"
-pyspark_file="gs://data-bucket522/files/main.py"
+project_id_=os.environ.get("GCP_PROJECT")
+pyspark_file=os.environ.get("pyspark_file")
 
 with DAG("ETL_Pipeline",default_args=default_args,schedule_interval=None,max_active_runs=1,catchup=False) as dag:
         
