@@ -22,6 +22,7 @@ default_args = {
     'retry_delay': timedelta(minutes=5)
 }
 project_id_="playground-s-11-f9f2edcb"
+pyspark_file="gs://data-bucket522/files/main.py"
 
 with DAG("ETL_Pipeline",default_args=default_args,schedule_interval=None,max_active_runs=1,catchup=False) as dag:
         
@@ -43,7 +44,7 @@ with DAG("ETL_Pipeline",default_args=default_args,schedule_interval=None,max_act
 
     job_={
         "placement":{"cluster_name": 'dataproc-cluster2'},
-        "pyspark_job":{"main_python_file_uri":"gs://data-bucket522/files/main.py"}
+        "pyspark_job":{"main_python_file_uri":pyspark_file}
 
 
     }
