@@ -2,6 +2,16 @@ import warnings
 from google.cloud import storage
 from pyspark.sql import SparkSession
 
+def copy_file(source_bucket,blob_name ,destination_bucket,destination_blob_name):
+    # try:   
+    storage_client = storage.Client() # global storage client  
+    source_bucket = storage_client.bucket(source_bucket)
+    source_blob = source_bucket.blob(blob_name)
+    destination_bucket = storage_client.bucket(destination_bucket)
+    blob_copy = source_bucket.copy_blob(source_blob, destination_bucket, destination_blob_name)
+    # source_bucket.delete_blob(source_blob)
+    source_blob.delete()
+
 
 def storage_to_bigquery(bucket_name: str, processing_zone: str = "processing_zone",
                        data_sample: str = "data_sample",
@@ -57,13 +67,13 @@ def storage_to_bigquery(bucket_name: str, processing_zone: str = "processing_zon
 
     # Move the processed file to processed_zone
     try:
-        storage_client.copy_blob(storage_client.get_bucket(bucket_name).blob(blob),
-                                 storage_client.get_bucket(bucket_name).blob(dest_blob))
-        storage_client.delete_blob(storage_client.get_bucket(bucket_name).blob(blob))
+        copy_file(bucket_name,blob, bucket_name,dest_blob)
     except Exception as e:
         print(f"Error moving file: {e}")
 
     spark.stop()
+
+
 
 
 if __name__ == "__main__":
