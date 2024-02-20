@@ -1,4 +1,16 @@
 # Cloud Data Processing Pipeline
+Reads data from parquet file and load data into bigquery.
+
+## Table of Contents
+* [Overview](#overview)
+* [Features](#features)
+* [Components](#components)
+* [Usage](#usage)
+* [Pipeline Architecture](#pipeline-architecture)
+* [Youtube](#youtube)
+* [Contributors](#contributors)
+* [License](#license)
+
 
 ## Overview
 The Cloud Data Processing Pipeline automates the processing of data files stored in a cloud storage bucket using Google Cloud Platform services. The pipeline is orchestrated by Google Cloud Composer and utilizes Google Cloud Dataproc, PySpark, Google BigQuery, and Google Cloud Storage.
@@ -29,6 +41,21 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
 8. Monitor the pipeline progress and logs in Cloud Composer.
 9. Verify the data loading and processing results in BigQuery.
 10. Clean up resources after processing.
+
+## Pipeline Architecture
+1. Dataproc Cluster Creation: Airflow creates a Dataproc cluster in GCP.
+2. PySpark Job Submission: Airflow submits a PySpark job to the Dataproc cluster.
+3. Data Processing and Loading:
+  The PySpark job does the following:
+  Fetches Parquet files from Cloud Storage ('processing_zone').
+  Performs necessary data transformations.
+  Loads the processed data into a BigQuery table.
+  Moves processed files to a 'processed_zone'.
+4. Cluster Deletion: Airflow deletes the Dataproc cluster.
+
+## Youtube
+[Orchestrating pipeline in airflow](https://youtu.be/rbjTeWTMnPs)
+
 
 ## Contributors
 - [Hammad Shamim](https://www.linkedin.com/in/hammad-shamim-6a2344128/)
