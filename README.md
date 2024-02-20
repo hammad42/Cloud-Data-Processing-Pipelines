@@ -52,6 +52,7 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
   Loads the processed data into a BigQuery table.
   Moves processed files to a 'processed_zone'.
 4. Cluster Deletion: Airflow deletes the Dataproc cluster.
+![Pipeline](./images/pipelinr.png) 
 
 ## Youtube
 [Orchestrating pipeline in airflow](https://youtu.be/rbjTeWTMnPs)
