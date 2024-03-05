@@ -139,7 +139,23 @@ In this pipeline we have transactional data which appended every hour, to load t
 
     ```
 
-7.
+7. Create cloudstorage bucket with globally unique name and after creation create two folder
+    -jars
+    -pyspark_files
+8. upload JAR files to jar folder 
+      * [gcs-connector-hadoop2-2.1.1.jar](jars\gcs-connector-hadoop2-2.1.1.jar)
+      * [mysql-connector-java-8.0.13.jar](Cloud-Data-Processing-Pipeline-on-GCP\jars\mysql-connector-java-8.0.13.jar)
+      * [protobuf-java-3.6.1.jar](Cloud-Data-Processing-Pipeline-on-GCP\jars\protobuf-java-3.6.1.jar)
+      * [spark-2.4-bigquery-0.36.1.jar](Cloud-Data-Processing-Pipeline-on-GCP\jars\spark-2.4-bigquery-0.36.1.jar)
+      * [spark-3.5-bigquery-0.36.1.jar](Cloud-Data-Processing-Pipeline-on-GCP\jars\spark-3.5-bigquery-0.36.1.jar)
+
+
+9. If your cloudSQL instance created then connect it with any mysql instance like Azure data studio. Use your instance external IP to connect.
+    ![cloudsql_client_azuredatastudio](images\transactional_data\cloudsql_client_azuredatastudio.png)
+
+
+
+
 
 ## Pipeline Architecture <a id="transactional-data-pipeline-architecture"></a>
 
