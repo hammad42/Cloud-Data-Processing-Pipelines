@@ -93,12 +93,12 @@ In this pipeline we have transactional data which appended every hour, to load t
 
 ## Components <a id="transactional-data-components"></a>
 
-- Fully automated scheduled pipeline.
-- Creates DataProc cluster.
-- Submits Pyspark job.
-- Waits till job completed.
-- Deleted the cluster after completion of job.
-- Contains each and every file which use in this project.
+- CloudSQL(MySQL) instance which uses to store all transactional data.
+- Compute Engine uses as Apache Airflow server.
+- VPC Network used to provide connectivity between services.
+- DataProc is used to process Pyspark jobs.
+- BigQuery is used as a warehouse to store processed data.
+- CloudStorage is used to store jar and pyspark files.
 
 
 ## Usage <a id="transactional-data-usage"></a>
