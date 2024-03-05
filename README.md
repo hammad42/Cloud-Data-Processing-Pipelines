@@ -143,11 +143,11 @@ In this pipeline we have transactional data which appended every hour, to load t
     -jars
     -pyspark_files
 8. upload JAR files to jar folder 
-      * [gcs-connector-hadoop2-2.1.1.jar](jars\gcs-connector-hadoop2-2.1.1.jar)
-      * [mysql-connector-java-8.0.13.jar](jars\mysql-connector-java-8.0.13.jar)
-      * [protobuf-java-3.6.1.jar](jars\protobuf-java-3.6.1.jar)
-      * [spark-2.4-bigquery-0.36.1.jar](jars\spark-2.4-bigquery-0.36.1.jar)
-      * [spark-3.5-bigquery-0.36.1.jar](jars\spark-3.5-bigquery-0.36.1.jar)
+      * [gcs-connector-hadoop2-2.1.1.jar](jars/gcs-connector-hadoop2-2.1.1.jar)
+      * [mysql-connector-java-8.0.13.jar](jars/mysql-connector-java-8.0.13.jar)
+      * [protobuf-java-3.6.1.jar](jars/protobuf-java-3.6.1.jar)
+      * [spark-2.4-bigquery-0.36.1.jar](jars/spark-2.4-bigquery-0.36.1.jar)
+      * [spark-3.5-bigquery-0.36.1.jar](jars/spark-3.5-bigquery-0.36.1.jar)
 
 
 9. If your cloudSQL instance created then connect it with any mysql instance like Azure data studio. Use your instance external IP to connect.
