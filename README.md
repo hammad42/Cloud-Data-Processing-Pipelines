@@ -5,25 +5,25 @@ This repository contains code for two data pipelines designed to process and man
 1. [File data to Bigquery](#file-data-to-bigquery).
 2. [Transactional data to bigquery](#transactional-data-to-bigquery).
 
+## FILE DATA TO BIGQUERY
 
-# FILE DATA TO BIGQUERY
 Reads data from parquet file and load data into bigquery.
 
-## Table of Contents
+## Table of Contents 
+
 * [Overview](#file-data-overview)
 * [Features](#file-data-features)
 * [Components](#file-data-components)
 * [Usage](#file-data-usage)
 * [Pipeline Architecture](#file-data-pipeline-architecture)
-* [Youtube](#file-data-youtube)
-* [Contributors](#file-data-contributors)
-* [License](#file-data-license)
-
+* [Youtube](#file_data_bigquery)
 
 ## Overview <a id="file-data-overview"></a>
+
 The Cloud Data Processing Pipeline automates the processing of data files stored in a cloud storage bucket using Google Cloud Platform services. The pipeline is orchestrated by Google Cloud Composer and utilizes Google Cloud Dataproc, PySpark, Google BigQuery, and Google Cloud Storage.
 
 ## Features <a id="file-data-features"></a>
+
 - Automatically processes data files stored in a cloud storage bucket.
 - Orchestrates a PySpark cluster on Google Cloud Dataproc.
 - Executes PySpark jobs to extract and transform data.
@@ -32,6 +32,7 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
 - Cleans up the Dataproc cluster after processing.
 
 ## Components <a id="file-data-components"></a>
+
 - **Google Cloud Storage (GCS)**: Stores the input and output data files.
 - **Google Cloud Composer**: Orchestrates the pipeline workflow.
 - **Google Cloud Dataproc**: Manages the PySpark cluster for data processing.
@@ -39,6 +40,7 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
 - **Google BigQuery**: Stores the processed data.
 
 ## Usage <a id="file-data-usage"></a>
+
 1. Clone the repository.
 2. Set up Google Cloud Platform (GCP) project.
 3. Enable necessary APIs: Google Cloud Composer, Google Cloud Dataproc, Google Cloud Storage, Google BigQuery.
@@ -51,6 +53,7 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
 10. Clean up resources after processing.
 
 ## Pipeline Architecture <a id="file-data-pipeline-architecture"></a>
+
 1. Dataproc Cluster Creation: Airflow creates a Dataproc cluster in GCP.
 2. PySpark Job Submission: Airflow submits a PySpark job to the Dataproc cluster.
 3. Data Processing and Loading:
@@ -62,29 +65,49 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
 4. Cluster Deletion: Airflow deletes the Dataproc cluster.
 ![Pipeline](./images/pipeline.png)
 
-# TRANSACTIONAL DATA TO BIGQUERY
+## TRANSACTIONAL DATA TO BIGQUERY
+
 This pipeline fetches data from the MySql transactional database after transformation it loads data into bigquery.
 
 ## Table of Contents
+
 * [Overview](#transactional-data-overview)
 * [Features](#transactional-data-features)
 * [Components](#transactional-data-components)
 * [Usage](#transactional-data-usage)
 * [Pipeline Architecture](#transactional-data-pipeline-architecture)
 * [Youtube](#youtube)
-* [Contributors](#contributors)
-* [License](#license)
 
-  ## Overview <a id="transactional-data-overview"></a>
-The Cloud Data Processing Pipeline automates the processing of data files stored in a cloud storage bucket using Google Cloud Platform services. The pipeline is orchestrated by Google Cloud Composer and utilizes Google Cloud Dataproc, PySpark, Google BigQuery, and Google Cloud Storage.
-  ## Overview <a id="transactional-data-overview"></a>
-  ## Features <a id="transactional-data-features"></a>
-  ## Components <a id="transactional-data-components"></a>
-  ## Usage <a id="transactional-data-usage"></a>
-  ## Pipeline Architecture <a id="transactional-data-pipeline-architecture"></a>
+## Overview <a id="transactional-data-overview"></a>
+
+In this pipeline we have transactional data which appended every hour, to load this data into warehouse we orchestrate a pipeline in apache airflow which create dataproc cluster and submits a pyspark job which fetches data from cloudSQL and after some transformation it loaded data into bigquery after the completion of this process dataproc cluster deleted to avoid undesired charges.
+
+## Features <a id="transactional-data-features"></a>
+
+- Fully automated scheduled pipeline.
+- Creates DataProc cluster.
+- Submits Pyspark job.
+- Waits till job completed.
+- Deleted the cluster after completion of job.
+- Contains each and every file which use in this project.
+
+## Components <a id="transactional-data-components"></a>
+
+- Fully automated scheduled pipeline.
+- Creates DataProc cluster.
+- Submits Pyspark job.
+- Waits till job completed.
+- Deleted the cluster after completion of job.
+- Contains each and every file which use in this project.
 
 
-## Youtube
+## Usage <a id="transactional-data-usage"></a>
+
+## Pipeline Architecture <a id="transactional-data-pipeline-architecture"></a>
+
+
+## Youtube <a id="file_data_bigquery"></a>
+
 [Orchestrating pipeline in airflow](https://youtu.be/rbjTeWTMnPs)
 
 
