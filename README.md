@@ -142,19 +142,52 @@ In this pipeline we have transactional data which appended every hour, to load t
 7. Create cloudstorage bucket with globally unique name and after creation create two folder
     -jars
     -pyspark_files
-8. upload JAR files to jar folder 
+8. insert config data into bigquery table `planes.config_table` using DML statement.
+
+      ```SQL
+    insert into planes.config_table
+    (
+      check_mark,
+      config_data
+    )
+    values(
+      0,
+      '{"jdbc_hostname": "10.27.144.3", "jdbc_port": 3306,"database":"planes","username":"root","password":"Karachi.321","table_":"planes","bucket":"databb_bucket789"}'
+    )
+      ```
+
+9. upload JAR files to jar folder 
       * [gcs-connector-hadoop2-2.1.1.jar](jars/gcs-connector-hadoop2-2.1.1.jar)
       * [mysql-connector-java-8.0.13.jar](jars/mysql-connector-java-8.0.13.jar)
       * [protobuf-java-3.6.1.jar](jars/protobuf-java-3.6.1.jar)
       * [spark-2.4-bigquery-0.36.1.jar](jars/spark-2.4-bigquery-0.36.1.jar)
       * [spark-3.5-bigquery-0.36.1.jar](jars/spark-3.5-bigquery-0.36.1.jar)
 
-
-9. If your cloudSQL instance created then connect it with any mysql instance like Azure data studio. Use your instance external IP to connect.
+10. If your cloudSQL instance created then connect it with any mysql instance like Azure data studio. Use your instance external IP to connect.
     ![cloudsql_client_azuredatastudio](images/transactional_data/cloudsql_client_azuredatastudio.png)
+11. Run DDL statements to create cloudsql database and table.
 
+    ```SQL
+    CREATE DATABASE planes;
 
+    use planes;
 
+    CREATE TABLE planes
+    (   
+        pri_key int PRIMARY KEY,
+        tailnum varchar(255) NOT NULL ,
+        year SMALLINT,
+        type varchar(255),
+        manufacturer varchar(255),
+        model varchar(255),	
+        engines SMALLINT,	
+        seats SMALLINT,	
+        speed varchar(255),	
+        engine VARCHAR(255)
+
+    );
+    ```
+12. Insert dummy data on your transactional database using [inserting_script.py](src/extras/inserting_script.py).
 
 
 ## Pipeline Architecture <a id="transactional-data-pipeline-architecture"></a>
