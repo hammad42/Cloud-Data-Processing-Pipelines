@@ -109,10 +109,37 @@ In this pipeline we have transactional data which appended every hour, to load t
 4. Allocate private IP range.
 5. Run gcloud command to create CloudSQL instance
 
-  ```bash
-  gcloud sql instances create transactional-data --availability-type=zonal --authorized-networks 202.59.12.0/24 --database-version=MYSQL_8_0 --region=us-central1 --root-password=Karachi.321 --network default --edition=enterprise --cpu=2 --memory=8 --storage-type=SSD --storage-size=10 
-  ```
+    ```bash
+    gcloud sql instances create transactional-data --availability-type=zonal --authorized-networks 202.59.12.0/24 --database-version=MYSQL_8_0 --region=us-central1 --root-password=Karachi.321 --network default --edition=enterprise --cpu=2 --memory=8 --storage-type=SSD --storage-size=10 
+    ```
 
+6. Run DDL statements to create database and table schema in bigquery.
+
+    ```SQL
+    CREATE SCHEMA planes;
+    CREATE TABLE planes.planes
+    ( 
+      pri_key int ,
+      tailnum STRING,
+      year INT64,
+      type STRING,
+      manufacturer STRING,
+      model STRING,
+      engines INT64,
+      seats INT64,
+      speed STRING,
+      engine STRING
+    );
+
+    CREATE TABLE planes.config_table
+    (
+      check_mark int,
+      config_data STRING
+    );
+
+    ```
+
+7.
 
 ## Pipeline Architecture <a id="transactional-data-pipeline-architecture"></a>
 
