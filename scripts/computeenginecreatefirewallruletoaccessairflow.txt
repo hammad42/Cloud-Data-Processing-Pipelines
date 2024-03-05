@@ -1,0 +1,9 @@
+gcloud compute --project=playground-s-11-f3eb5cd0 firewall-rules create ssh-firewall --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=all --source-ranges=202.59.12.0/24
+
+
+
+gcloud compute --project=playground-s-11-765d3dd9 firewall-rules create airflow --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:8080 --source-ranges=202.59.12.0/24
+
+
+
+gcloud compute --project=playground-s-11-54c426dc firewall-rules create airflow --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:8080 --source-ranges=202.59.12.0/24

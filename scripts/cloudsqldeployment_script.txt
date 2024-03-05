@@ -1,0 +1,7 @@
+
+first enable Service Networking API
+
+allocate iprange in vpc network 
+PRIVATE SERVICES ACCESS
+
+gcloud sql instances create transactional-data --availability-type=zonal --authorized-networks 202.59.12.0/24 --database-version=MYSQL_8_0 --region=us-central1 --root-password=Karachi.321 --network default --edition=enterprise --cpu=2 --memory=8 --storage-type=SSD --storage-size=10 

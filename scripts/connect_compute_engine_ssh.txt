@@ -1,0 +1,3 @@
+gcloud auth login
+
+gcloud compute ssh --project=playground-s-11-63b6b15a --zone=us-central1-a my-instance

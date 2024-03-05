@@ -1,0 +1,5 @@
+gcloud dataproc clusters create cluster-b44f --enable-component-gateway --region us-central1 --master-machine-type n2-standard-2 --master-boot-disk-type pd-ssd --master-boot-disk-size 30 --num-workers 2 --worker-machine-type n2-standard-2 --worker-boot-disk-type pd-balanced --worker-boot-disk-size 30 --image-version 2.1-debian11 --optional-components JUPYTER --project playground-s-11-46cb08ae
+
+
+
+gcloud dataproc clusters create my-cluster --enable-component-gateway --region us-central1 --master-machine-type n2-standard-2 --master-boot-disk-type pd-ssd --master-boot-disk-size 50 --num-workers 3 --worker-machine-type n2-standard-2 --worker-boot-disk-type pd-ssd --worker-boot-disk-size 50 --image-version 2.1-debian11 --optional-components JUPYTER --project playground-s-11-63b6b15a

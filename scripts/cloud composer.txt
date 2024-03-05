@@ -1,0 +1,5 @@
+gcloud composer environments create orchestrator --location us-central1 --image-version composer-2.6.2-airflow-2.6.3 --zone us-central1-a --node-count 3 --scheduler-count 1 --disk-size 30 --machine-type n1-standard-2 --cloud-sql-machine-type db-n1-standard-2 --web-server-machine-type composer-n1-webserver-2 --service-account  "cli-service-account-1@playground-s-11-07ce6f47.iam.gserviceaccount.com"
+
+
+
+gcloud composer environments create orchestrator --location us-central1 --image-version composer-2.6.2-airflow-2.6.3  

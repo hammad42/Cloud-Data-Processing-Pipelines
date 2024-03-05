@@ -1,0 +1,75 @@
+POST /v1/projects/playground-s-11-f23ad21d/regions/us-central1/clusters/
+{
+  "projectId": "playground-s-11-f23ad21d",
+  "clusterName": "cluster-c361",
+  "config": {
+    "configBucket": "",
+    "gceClusterConfig": {
+      "networkUri": "",
+      "subnetworkUri": "default",
+      "internalIpOnly": false,
+      "zoneUri": "",
+      "metadata": {},
+      "tags": [],
+      "shieldedInstanceConfig": {
+        "enableSecureBoot": false,
+        "enableVtpm": false,
+        "enableIntegrityMonitoring": false
+      }
+    },
+    "masterConfig": {
+      "numInstances": 1,
+      "machineTypeUri": "n2-standard-2",
+      "diskConfig": {
+        "bootDiskType": "pd-standard",
+        "bootDiskSizeGb": "30",
+        "numLocalSsds": 0,
+        "localSsdInterface": "SCSI"
+      },
+      "minCpuPlatform": "",
+      "imageUri": ""
+    },
+    "softwareConfig": {
+      "imageVersion": "2.1-debian11",
+      "properties": {},
+      "optionalComponents": [
+        "JUPYTER"
+      ]
+    },
+    "lifecycleConfig": {},
+    "initializationActions": [],
+    "encryptionConfig": {
+      "gcePdKmsKeyName": ""
+    },
+    "autoscalingConfig": {
+      "policyUri": ""
+    },
+    "endpointConfig": {
+      "enableHttpPortAccess": true
+    },
+    "securityConfig": {
+      "kerberosConfig": {}
+    },
+    "workerConfig": {
+      "numInstances": 2,
+      "machineTypeUri": "n2-standard-2",
+      "diskConfig": {
+        "bootDiskType": "pd-standard",
+        "bootDiskSizeGb": "30",
+        "numLocalSsds": 0,
+        "localSsdInterface": "SCSI"
+      },
+      "minCpuPlatform": "",
+      "imageUri": ""
+    },
+    "secondaryWorkerConfig": {
+      "numInstances": 0
+    }
+  },
+  "labels": {},
+  "status": {},
+  "statusHistory": [
+    {}
+  ],
+  "metrics": {}
+}

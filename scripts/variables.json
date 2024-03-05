@@ -1,0 +1,5 @@
+{
+    "BUCKET": "datab_bucket42",
+    "GCP_PROJECT": "playground-s-11-765d3dd9",
+    "PYSPARK_FILE": "gs://datab_bucket42/pyspark_files/transactional_data.py"
+}
