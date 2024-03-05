@@ -151,7 +151,7 @@ In this pipeline we have transactional data which appended every hour, to load t
 
 
 9. If your cloudSQL instance created then connect it with any mysql instance like Azure data studio. Use your instance external IP to connect.
-    ![cloudsql_client_azuredatastudio](images\transactional_data\cloudsql_client_azuredatastudio.png)
+    ![cloudsql_client_azuredatastudio](images/transactional_data/cloudsql_client_azuredatastudio.png)
 
 
 
