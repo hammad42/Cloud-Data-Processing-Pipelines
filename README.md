@@ -10,7 +10,7 @@ This repository contains code for two data pipelines designed to process and man
 Reads data from parquet file and load data into bigquery.
 
 ## Table of Contents
-* [Overview](#overview)
+* [Overview](#file-data-overview)
 * [Features](#features)
 * [Components](#components)
 * [Usage](#usage)
@@ -20,7 +20,7 @@ Reads data from parquet file and load data into bigquery.
 * [License](#license)
 
 
-## Overview
+## Overview <a id="file-data-overview"></a>
 The Cloud Data Processing Pipeline automates the processing of data files stored in a cloud storage bucket using Google Cloud Platform services. The pipeline is orchestrated by Google Cloud Composer and utilizes Google Cloud Dataproc, PySpark, Google BigQuery, and Google Cloud Storage.
 
 ## Features
@@ -63,6 +63,21 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
 ![Pipeline](./images/pipeline.png)
 
 # TRANSACTIONAL DATA TO BIGQUERY
+This pipeline fetches data from the MySql transactional database after transformation it loads data into bigquery.
+
+## Table of Contents
+* [Overview](#transactional-data-overview)
+* [Features](#features)
+* [Components](#components)
+* [Usage](#usage)
+* [Pipeline Architecture](#pipeline-architecture)
+* [Youtube](#youtube)
+* [Contributors](#contributors)
+* [License](#license)
+
+  ## Overview <a id="transactional-data-overview"></a>
+The Cloud Data Processing Pipeline automates the processing of data files stored in a cloud storage bucket using Google Cloud Platform services. The pipeline is orchestrated by Google Cloud Composer and utilizes Google Cloud Dataproc, PySpark, Google BigQuery, and Google Cloud Storage.
+
 
 ## Youtube
 [Orchestrating pipeline in airflow](https://youtu.be/rbjTeWTMnPs)
