@@ -7,7 +7,7 @@ timestamp = pd.Timestamp.now()
 database_username = "root"
 database_password = "Karachi.321"
 database_name = "planes"
-database_host = '34.31.88.172' # Find this in your instance details
+database_host = '34.42.196.147' # Find this in your instance details
 x=0
 
 database_connection_string = 'mysql+pymysql://{}:{}@{}/{}'.format(
@@ -21,7 +21,7 @@ try:
     print("Database connection successful!")
 except sqlalchemy.exc.OperationalError as e:
     print(f"Connection failed: {e}")
-df=pd.read_csv("planes.csv",skiprows=x,nrows=500,header=None,names=['tailnum', 'year', 'type','manufacturer', 'model', 'engines','seats','speed','engine'])
+df=pd.read_csv("E:/workspace/Orchestrate ETL pipeline/Cloud-Data-Processing-Pipeline-on-GCP/data_files/transactional_data/planes.csv",skiprows=x,nrows=500,header=None,names=['tailnum', 'year', 'type','manufacturer', 'model', 'engines','seats','speed','engine'])
 increasing_numbers = pd.Series(range(x, x+len(df) ))
 df['pri_key']=increasing_numbers
 print(df.head())
