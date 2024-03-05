@@ -1,4 +1,12 @@
 # Cloud Data Processing Pipeline
+
+This repository contains code for two data pipelines designed to process and manage both file data and transactional data. The file data pipeline handles ingestion and transformation of data from parquet files, while the transactional data pipeline focuses on processing structured data typically stored in databases.
+
+1. [File data to Bigquery](#file-data-to-bigquery).
+2. [Transactional data to bigquery](#transactional-data-to-bigquery).
+
+
+# FILE DATA TO BIGQUERY
 Reads data from parquet file and load data into bigquery.
 
 ## Table of Contents
@@ -52,7 +60,9 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
   Loads the processed data into a BigQuery table.
   Moves processed files to a 'processed_zone'.
 4. Cluster Deletion: Airflow deletes the Dataproc cluster.
-![Pipeline](./images/pipeline.png) 
+![Pipeline](./images/pipeline.png)
+
+# TRANSACTIONAL DATA TO BIGQUERY
 
 ## Youtube
 [Orchestrating pipeline in airflow](https://youtu.be/rbjTeWTMnPs)
