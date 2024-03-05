@@ -103,6 +103,15 @@ In this pipeline we have transactional data which appended every hour, to load t
 
 ## Usage <a id="transactional-data-usage"></a>
 
+1. Clone the repository.
+2. Set up Google Cloud Platform (GCP) project.
+3. Enable necessary APIs:  Google Cloud Dataproc,Google CloudSQL, Google Cloud Storage, Google BigQuery.
+4. Allocate private IP range.
+5. Run gcloud command to create CloudSQL instance
+
+  `gcloud sql instances create transactional-data --availability-type=zonal --authorized-networks 202.59.12.0/24 --database-version=MYSQL_8_0 --region=us-central1 --root-password=Karachi.321 --network default --edition=enterprise --cpu=2 --memory=8 --storage-type=SSD --storage-size=10`
+
+
 ## Pipeline Architecture <a id="transactional-data-pipeline-architecture"></a>
 
 
