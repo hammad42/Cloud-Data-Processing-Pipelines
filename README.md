@@ -78,10 +78,10 @@ This pipeline fetches data from the MySql transactional database after transform
   ## Overview <a id="transactional-data-overview"></a>
 The Cloud Data Processing Pipeline automates the processing of data files stored in a cloud storage bucket using Google Cloud Platform services. The pipeline is orchestrated by Google Cloud Composer and utilizes Google Cloud Dataproc, PySpark, Google BigQuery, and Google Cloud Storage.
   ## Overview <a id="transactional-data-overview"></a>
-  ## Overview <a id="transactional-data-features"></a>
-  ## Overview <a id="transactional-data-components"></a>
-  ## Overview <a id="transactional-data-usage"></a>
-  ## Overview <a id="transactional-data-pipeline-architecture"></a>
+  ## Features <a id="transactional-data-features"></a>
+  ## Components <a id="transactional-data-components"></a>
+  ## Usage <a id="transactional-data-usage"></a>
+  ## Pipeline Architecture <a id="transactional-data-pipeline-architecture"></a>
 
 
 ## Youtube
