@@ -1,1 +1,0 @@
-gcloud compute --project=playground-s-11-54c426dc firewall-rules create airflow --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:8080 --source-ranges=202.59.12.0/24

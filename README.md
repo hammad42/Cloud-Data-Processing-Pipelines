@@ -142,7 +142,7 @@ In this pipeline we have transactional data which appended every hour, to load t
 7. Create cloudstorage bucket with globally unique name and after creation create two folder
     -jars
     -pyspark_files
-8. insert config data into bigquery table `planes.config_table` using DML statement.
+8. insert config data into bigquery table `planes.config_table` using DML statement. Change this configuration according to your details.
 
       ```SQL
     insert into planes.config_table
@@ -187,8 +187,49 @@ In this pipeline we have transactional data which appended every hour, to load t
 
     );
     ```
-12. Insert dummy data on your transactional database using [inserting_script.py](src/extras/inserting_script.py).
 
+12. Insert dummy data on your transactional database using [inserting_script.py](src/extras/inserting_script.py).
+13. Create compute engine instance for Apache Airflow using below script. Must change your poroject name and service account number from below script.
+
+      ```BASH
+      gcloud compute instances create my-instance --project=playground-s-11-806f63b2 --zone=us-central1-a --machine-type=e2-custom-2-8192 --network-interface=network-tier=PREMIUM,stack-type=IPV4_ONLY,subnet=default --maintenance-policy=MIGRATE --provisioning-model=STANDARD --service-account=768546597619-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/cloud-platform --tags=http-server,https-server --create-disk=auto-delete=yes,boot=yes,device-name=my-instance,image=projects/debian-cloud/global/images/debian-12-bookworm-v20240213,mode=rw,size=20,type=projects/playground-s-11-806f63b2/zones/us-central1-a/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --labels=goog-ec-src=vm_add-gcloud --reservation-affinity=any
+    ```
+
+14. Create firewall rule to access airflow webserver from your local instance.
+
+      ```BASH
+      gcloud compute --project=playground-s-11-806f63b2 firewall-rules create airflow --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:8080 --source-ranges=202.59.12.0/24
+
+      ```
+
+15. Insstall airflow using below scripts on your compute engine instance.
+
+    ```BASH
+      sudo apt install python3.11-venv
+      python3 -m venv airflow_env
+      source airflow_env/bin/activate
+      pip install apache-airflow[gcp]
+      airflow db init
+      airflow users create --username root --password Karachi.321 --role Admin --firstname hams --lastname 42 --email abc@gmail.com
+      airflow webserver -p 8080 
+      airflow scheduler
+      cd airflow
+      mkdir dags
+
+    ```
+
+16. Set environment variable in airflow using [variables.json](scripts/transactional_data/apache_airflow/variables.json)
+  ![importing_environment_varialbes](images/transactional_data/importing_environment_variable_into_airflow.png)
+17. Copy dags from your local directory to compute engine directory inside `dags` folder.
+
+    ```BASH
+    gcloud compute scp "E:\workspace\Orchestrate ETL pipeline\mysql-pandas\dags\pipeline.py" my-instance:/home/hamma/airflow/dags
+
+    ```
+
+18. Triggers a dag manually or schedule it to trigger automatically.
+
+19. After successful completion you will see your transformed data into bigquery.
 
 ## Pipeline Architecture <a id="transactional-data-pipeline-architecture"></a>
 
