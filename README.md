@@ -24,22 +24,21 @@ In this pipeline we have transactional data which appended every hour, to load t
 
 ## Features <a id="transactional-data-features"></a>
 
-- Fully automated scheduled pipeline.
-- Creates DataProc cluster.
-- Submits Pyspark job.
-- Waits till job completed.
-- Deleted the cluster after completion of job.
-- Contains each and every file which use in this project.
+* Fully automated scheduled pipeline.
+* Creates DataProc cluster.
+* Submits Pyspark job.
+* Waits till job completed.
+* Deleted the cluster after completion of job.
+* Contains each and every file which use in this project.
 
 ## Components <a id="transactional-data-components"></a>
 
-- CloudSQL(MySQL) instance which uses to store all transactional data.
-- Compute Engine uses as Apache Airflow server.
-- VPC Network used to provide connectivity between services.
-- DataProc is used to process Pyspark jobs.
-- BigQuery is used as a warehouse to store processed data.
-- CloudStorage is used to store jar and pyspark files.
-
+* CloudSQL(MySQL) instance which uses to store all transactional data.
+* Compute Engine uses as Apache Airflow server.
+* VPC Network used to provide connectivity between services.
+* DataProc is used to process Pyspark jobs.
+* BigQuery is used as a warehouse to store processed data.
+* CloudStorage is used to store jar and pyspark files.
 
 ## Usage <a id="transactional-data-usage"></a>
 
@@ -237,11 +236,12 @@ The Cloud Data Processing Pipeline automates the processing of data files stored
 
 [Orchestrating pipeline in airflow](https://youtu.be/rbjTeWTMnPs)
 
-
 ## Contributors
-- [Hammad Shamim](https://www.linkedin.com/in/hammad-shamim-6a2344128/)
+
+[Hammad Shamim](https://www.linkedin.com/in/hammad-shamim-6a2344128/)
 
 ## License
+
 This project is licensed under the [MIT License](LICENSE).
 
 Feel free to customize this README.md according to your project's specific details and requirements. Good luck with your Cloud Data Processing Pipeline project!
