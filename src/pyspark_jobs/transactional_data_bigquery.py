@@ -6,7 +6,7 @@ import pandas as pd
 from pyspark.sql.functions import col
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType
 
-# Consider using environment variables (more secure)
+# Consider using environment variables (more secure )
 config_table = 'planes.config_table'
 
 def load_and_process_data(spark,config_data_fetch_str, config_data_fetch_dict,check_mark):
