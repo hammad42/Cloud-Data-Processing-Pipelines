@@ -12,6 +12,7 @@ database_username_azure = os.environ.get("database_username_azure")
 database_password_azure = os.environ.get("database_password_azure")
 database_name_azure = os.environ.get("database_name_azure")
 database_host_azure = os.environ.get("database_host_azure") # Find this in your instance details transactionaldataserver.database.windows.net
+table="titles"
 
 # **Database 1 (MySQL - Source)**
 db1_connection_string = 'mysql+pymysql://{}:{}@{}/{}'.format(
@@ -26,10 +27,10 @@ db2_engine = create_engine(db2_engine_url)
 # **1. Query Data from Database 1**
 query = """
 SELECT *
-FROM `employees`
-where emp_no <10100
-"""
-
+FROM {}
+where emp_no < 10100
+""".format(table)
+print(query)
 try:
     df = pd.read_sql(query, db1_engine)
     print("Data retrieved from the first database.")
@@ -38,7 +39,7 @@ except sqlalchemy.exc.OperationalError as e:
 
 # **2. Load into the Azure Database**
 try:
-    df.to_sql('employees', db2_engine, if_exists='append', index=False)  
+    df.to_sql(table, db2_engine, if_exists='append', index=False)  
     print("Data loaded into the Azure database.")
 except sqlalchemy.exc.OperationalError as e:
     print(f"Loading into the Azure database failed: {e}")
