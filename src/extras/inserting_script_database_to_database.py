@@ -12,7 +12,7 @@ database_username_azure = os.environ.get("database_username_azure")
 database_password_azure = os.environ.get("database_password_azure")
 database_name_azure = os.environ.get("database_name_azure")
 database_host_azure = os.environ.get("database_host_azure") # Find this in your instance details transactionaldataserver.database.windows.net
-table="titles"
+table="dept_manager"
 
 # **Database 1 (MySQL - Source)**
 db1_connection_string = 'mysql+pymysql://{}:{}@{}/{}'.format(
@@ -28,7 +28,7 @@ db2_engine = create_engine(db2_engine_url)
 query = """
 SELECT *
 FROM {}
-where emp_no < 10100
+where emp_no >= 10200 and emp_no < 10300
 """.format(table)
 print(query)
 try:

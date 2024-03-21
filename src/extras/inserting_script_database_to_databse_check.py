@@ -16,7 +16,7 @@ database_password_azure = os.environ.get("database_password_azure")
 database_name_azure = os.environ.get("database_name_azure")
 database_host_azure = os.environ.get("database_host_azure") # Find this in your instance details transactionaldataserver.database.windows.net
 x=0
-# print(database_username)
+print(database_host_azure)
 
 database_connection_string = 'mysql+pymysql://{}:{}@{}/{}'.format(
     database_username, database_password, database_host, database_name
