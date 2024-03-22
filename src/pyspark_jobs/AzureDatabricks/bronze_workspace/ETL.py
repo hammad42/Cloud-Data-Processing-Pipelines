@@ -77,5 +77,13 @@ def cdc_load(spark,table,config_table):
     """)
 
 # Example usage (assuming you have a SparkSession called 'spark')
-cdc_load(spark, "employees", "bronze.config_tables.configurations") 
 
+
+
+# COMMAND ----------
+
+tables=("employees","dept_emp","dept_manager","salaries","titles")
+for table in tables:
+    cdc_load(spark, table, "bronze.config_tables.configurations")
+
+ 
