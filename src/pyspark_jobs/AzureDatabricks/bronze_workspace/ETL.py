@@ -1,5 +1,4 @@
 # Databricks notebook source
-
 # %sql
 # -- INSERT INTO bronze.main_tables.employees
 # -- (SELECT * FROM my_transactional_data.dbo.employees );
@@ -78,15 +77,9 @@ def cdc_load(spark,table,config_table):
 
 # Example usage (assuming you have a SparkSession called 'spark')
 
-
-
-# COMMAND ----------
-
 tables=("employees","dept_emp","dept_manager","salaries","titles")
 for table in tables:
     cdc_load(spark, table, "bronze.config_tables.configurations")
-
- 
 
 # COMMAND ----------
 
