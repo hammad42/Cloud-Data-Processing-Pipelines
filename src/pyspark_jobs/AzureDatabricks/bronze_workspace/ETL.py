@@ -87,3 +87,48 @@ for table in tables:
     cdc_load(spark, table, "bronze.config_tables.configurations")
 
  
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Code for upserts
+
+# COMMAND ----------
+
+# MERGE INTO customers AS target
+# USING (
+#   SELECT 102 AS customer_id, 'Alice' AS name, 'NY' AS state
+#   UNION ALL
+#   SELECT 105 AS customer_id, 'Bob' AS name, 'CA' as state 
+# ) AS source
+# ON target.customer_id = source.customer_id
+# WHEN MATCHED THEN 
+#   UPDATE SET name = source.name, state = source.state
+# WHEN NOT MATCHED THEN 
+#   INSERT (customer_id, name, state) 
+#   VALUES (source.customer_id, source.name, source.state);
+
+
+# COMMAND ----------
+
+# from pyspark.sql.functions import col
+
+# updates_df = spark.createDataFrame([
+#     (102, 'Alice Updated', 'CA'),  # Existing customer - update
+#     (200, 'Charlie', 'FL')          # New customer - insert
+# ], schema=["customer_id", "name", "state"])
+
+# # Option 1: Using overwrite if exists, filtering (less efficient for large tables):
+# updates_df.write.format("delta") \
+#             .mode("overwrite") \
+#             .option("mergeSchema", "true") \
+#             .saveAsTable("customers") 
+
+# # Option 2: More performant approach, especially for larger tables
+# customers_df = spark.read.table("customers")
+
+# result_df = customers_df.alias("target") \
+#                         .merge(updates_df.alias("source"), "target.customer_id = source.customer_id") \
+#                         .whenMatchedUpdateAll() \
+#                         .whenNotMatchedInsertAll() \
+#                         .execute() 
