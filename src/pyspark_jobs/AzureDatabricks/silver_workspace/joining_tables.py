@@ -1,44 +1,69 @@
 # Databricks notebook source
-# MAGIC %sql
-# MAGIC with tmp2 as
-# MAGIC (WITH tmp as 
-# MAGIC (SELECT first_name,last_name,e.emp_no,dept_name,s.from_date,salary FROM bronze.main_tables.employees as e
-# MAGIC INNER JOIN bronze.main_tables.dept_emp as d
-# MAGIC on e.emp_no=d.emp_no
-# MAGIC INNER JOIN bronze.main_tables.departments as dep
-# MAGIC on d.dept_no=dep.dept_no
-# MAGIC INNER JOIN bronze.main_tables.salaries as s
-# MAGIC on s.emp_no=e.emp_no)
-# MAGIC SELECT first_name,last_name,emp_no,dept_name,from_date,salary,
-# MAGIC row_number() OVER ( PARTITION BY emp_no,from_date,salary ORDER BY salary) as dup
-# MAGIC FROM tmp)
-# MAGIC select * from tmp2
-# MAGIC where dup>1
-# MAGIC
+# %sql
+# with tmp2 as
+# (WITH tmp as 
+# (SELECT first_name,last_name,e.emp_no,dept_name,s.from_date,salary FROM bronze.main_tables.employees as e
+# INNER JOIN bronze.main_tables.dept_emp as d
+# on e.emp_no=d.emp_no
+# INNER JOIN bronze.main_tables.departments as dep
+# on d.dept_no=dep.dept_no
+# INNER JOIN bronze.main_tables.salaries as s
+# on s.emp_no=e.emp_no)
+# SELECT first_name,last_name,emp_no,dept_name,from_date,salary,
+# row_number() OVER ( PARTITION BY emp_no,from_date,salary,dept_name ORDER BY salary) as dup
+# FROM tmp)
+# select * from tmp2
+# where dup>1
+
+
+# COMMAND ----------
+
+# %sql
+# SELECT first_name,last_name,e.emp_no,dept_name,s.from_date,salary FROM bronze.main_tables.employees as e
+# INNER JOIN bronze.main_tables.dept_emp as d
+# on e.emp_no=d.emp_no
+# INNER JOIN bronze.main_tables.departments as dep
+# on d.dept_no=dep.dept_no
+# INNER JOIN bronze.main_tables.salaries as s
+# on s.emp_no=e.emp_no
+
+# COMMAND ----------
+
+# %sql
+# SELECT e.emp_no,s.from_date,salary,count(*) FROM bronze.main_tables.employees as e
+# INNER JOIN bronze.main_tables.dept_emp as d
+# on e.emp_no=d.emp_no
+# INNER JOIN bronze.main_tables.departments as dep
+# on d.dept_no=dep.dept_no
+# INNER JOIN bronze.main_tables.salaries as s
+# on s.emp_no=e.emp_no
+
+# group by e.emp_no,s.from_date,salary,d.dept_no
+# HAVING COUNT(*) > 1
+# order by e.emp_no,s.salary
+
+# COMMAND ----------
+
+# %sql
+# truncate table silver.main_table.joined_data
 
 # COMMAND ----------
 
 # MAGIC %sql
 # MAGIC MERGE INTO silver.main_table.joined_data as target
 # MAGIC USING(
-# MAGIC with tmp2 as
-# MAGIC (WITH tmp as 
-# MAGIC (SELECT first_name,last_name,e.emp_no,dept_name,s.from_date,salary FROM bronze.main_tables.employees as e
+# MAGIC SELECT first_name,last_name,e.emp_no,dept_name,s.from_date,salary FROM bronze.main_tables.employees as e
 # MAGIC INNER JOIN bronze.main_tables.dept_emp as d
 # MAGIC on e.emp_no=d.emp_no
 # MAGIC INNER JOIN bronze.main_tables.departments as dep
 # MAGIC on d.dept_no=dep.dept_no
 # MAGIC INNER JOIN bronze.main_tables.salaries as s
-# MAGIC on s.emp_no=e.emp_no)
-# MAGIC SELECT first_name,last_name,emp_no,dept_name,from_date,salary,
-# MAGIC row_number() OVER ( PARTITION BY emp_no,from_date,salary ORDER BY salary) as dup
-# MAGIC FROM tmp)
-# MAGIC select * from tmp2
-# MAGIC where dup>1
+# MAGIC on s.emp_no=e.emp_no
 # MAGIC ) AS source
 # MAGIC ON target.emp_no=source.emp_no
 # MAGIC AND target.from_date=source.from_date
 # MAGIC AND target.salary=source.salary
+# MAGIC AND target.dept_name=source.dept_name
 # MAGIC WHEN MATCHED THEN
 # MAGIC UPDATE SET
 # MAGIC target.first_name=source.first_name,
@@ -66,3 +91,15 @@
 # MAGIC   source.salary
 # MAGIC )
 # MAGIC
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## checking duplicates
+
+# COMMAND ----------
+
+# %sql
+# select emp_no,dept_name,salary,from_date,count(*) from silver.main_table.joined_data
+# group by emp_no,dept_name,salary,from_date
+# having count(*)>1
