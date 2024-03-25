@@ -31,6 +31,8 @@ This repository showcases a streamlined data pipeline built within Azure Databri
 
 ## Overview <a id="azure-data-overview"></a>
 
+In this pipeline, we implement a Databricks Medallion architecture to integrate data from an Azure SQL database and Azure Data Lake.  Raw data is loaded into the Bronze zone, followed by filtering, joining, and cleansing in the Silver zone. Aggregations are computed in the Gold zone, ensuring data readiness for analysis. A scheduled Databricks job automates the ETL process, delivering consistent updates to the Gold zone. Finally, we connect Power BI to the Gold zone, enabling the creation of insightful dashboards for decision-makers.
+
 ## Features <a id="azure-data-features"></a>
 
 ## Components <a id="azure-data-components"></a>
