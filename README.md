@@ -8,6 +8,14 @@ This repository contains code for two data pipelines designed to process and man
 
 ## --> AZURE DATABRICKS PIPELINE <a id="azure_data_pipeline"></a>
 
+This repository showcases a streamlined data pipeline built within Azure Databricks. Witness the journey:
+
+🔗 Connect to Azure SQL Database and Data.
+🥉 Load data into the Bronze.
+🥈 Cleanse and join data in the Silver.
+🥇 Calculate aggregations within the Gold catalog.
+🚀 Seamlessly visualize insights in Power BI.
+
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
 This pipeline fetches data from the MySql transactional database after transformation it loads data into bigquery.
