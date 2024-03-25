@@ -29,7 +29,7 @@ def insertion(table):
     query = """
     SELECT *
     FROM {}
-    where emp_no >= 10700 and emp_no < 10800
+    where emp_no >= 11350 and emp_no < 11550
     """.format(table)
     print(query)
     try:
