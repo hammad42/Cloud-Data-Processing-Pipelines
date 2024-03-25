@@ -2,10 +2,13 @@
 
 This repository contains code for two data pipelines designed to process and manage both file data and transactional data. The file data pipeline handles ingestion and transformation of data from parquet files, while the transactional data pipeline focuses on processing structured data typically stored in databases.
 
-1. [File data to Bigquery](#file-data-to-bigquery).
+1. [Azure Databricks pipeline](#azure_data_pipeline).
 2. [Transactional data to bigquery](#transactional-data-to-bigquery).
+3. [File data to Bigquery](#file-data-to-bigquery).
 
-## TRANSACTIONAL DATA TO BIGQUERY
+## --> AZURE DATABRICKS PIPELINE <a id="azure_data_pipeline"></a>
+
+## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
 This pipeline fetches data from the MySql transactional database after transformation it loads data into bigquery.
 
@@ -141,7 +144,7 @@ In this pipeline we have transactional data which appended every hour, to load t
 
       ```
 
-15. Insstall airflow using below scripts on your compute engine instance.
+15. Install airflow using below scripts on your compute engine instance.
 
     ```BASH
       sudo apt install python3.11-venv
@@ -172,7 +175,7 @@ In this pipeline we have transactional data which appended every hour, to load t
 
 ## Pipeline Architecture <a id="transactional-data-pipeline-architecture"></a>
 
-## FILE DATA TO BIGQUERY
+## --> FILE DATA TO BIGQUERY <a id="file-data-to-bigquery"></a>
 
 Reads data from parquet file and load data into bigquery.
 
