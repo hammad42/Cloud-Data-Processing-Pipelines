@@ -57,6 +57,7 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
 7. Create federated connection with your Azure SQL database for this go to external data then go to connections here you need to give your connection name connection type like sql server then test the connection and create it.
 8. At this stage we have created all the external connection now we need to create catalog and schema for our connection so we can easily fetch or load data in them.
 9. we need to create 4 catalogs bronze, silver, gold, my_transactional_data, for this we need to give catalog name its type and its external location which we already created in step6. ![create catalog](./images/Azure_Databricks_pipeline/catalog.png). As external location already created it will give you hint when cretaing catalog.
+10. After creating catalog we need to create schema main_table and config_table for each bronze, silver and gold.
 
 
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
