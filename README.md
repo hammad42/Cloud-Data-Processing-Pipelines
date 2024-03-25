@@ -46,7 +46,18 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
 3. Create three containers inside your storage account 🥉Bronze 🥈Silver🥇Golde
 4. Give Storage Blob Data Contributor role to your access connector which we create on step 1 ![adding role to your access connector](./images/Azure_Databricks_pipeline/assign_role_to_connector.png).
 5. In your Databricks catalog open External Data and create storage credential, you need to give connector Id of your azure databricks connector you can copy it from its overview inside ResourceID.[Documentation to create storage credentials](https://learn.microsoft.com/en-us/azure/databricks/connect/unity-catalog/storage-credentials?source=recommendations).
-6. 
+6. After creating storage credential now we can create external location to fetch and load data from our containers. for this we need to create 3 external location bronze, silver, gold. ![As shown in picture](./images/Azure_Databricks_pipeline/external_location.png). [Documentation to create external connection](https://learn.microsoft.com/en-us/azure/databricks/sql/language-manual/sql-ref-external-locations?source=recommendations) or alternatively you can use below script.
+
+    ```SQL
+    CREATE EXTERNAL LOCATION my_external_location_name 
+    URL 'abfss://bronze@primarydata42.dfs.core.windows.net/'
+    WITH (CREDENTIAL adb);
+    ```
+
+7. Create federated connection with your Azure SQL database for this go to external data then go to connections here you need to give your connection name connection type like sql server then test the connection and create it.
+8. At this stage we have created all the external connection now we need to create catalog and schema for our connection so we can easily fetch or load data in them.
+9. we need to create 4 catalogs bronze, silver, gold, my_transactional_data, for this we need to give catalog name its type and its external location which we already created in step6. ![create catalog](./images/Azure_Databricks_pipeline/catalog.png). As external location already created it will give you hint when cretaing catalog.
+
 
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
