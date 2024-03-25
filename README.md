@@ -127,7 +127,7 @@ In this pipeline we have transactional data which appended every hour, to load t
     );
     ```
 
-12. Insert dummy data on your transactional database using [inserting_script.py](src/extras/inserting_script.py).
+12. Insert dummy data on your transactional database using [inserting_script_file_to_database.py](src/extras/inserting_script_file_to_database.py).
 13. Create compute engine instance for Apache Airflow using below script. Must change your poroject name and service account number from below script.
 
       ```BASH
