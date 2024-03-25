@@ -41,7 +41,12 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
 
 ## Usage <a id="azure-data-usage"></a>
 
-
+1. Create access connector for Azure Databricks in the same resource where you want to create your datalake connector ![access connector](./images/Azure_Databricks_pipeline/create_access_connector.png).
+2. Create your Storage account.
+3. Create three containers inside your storage account 🥉Bronze 🥈Silver🥇Golde
+4. Give Storage Blob Data Contributor role to your access connector which we create on step 1 ![adding role to your access connector](./images/Azure_Databricks_pipeline/assign_role_to_connector.png).
+5. In your Databricks catalog open External Data and create storage credential, you need to give connector Id of your azure databricks connector you can copy it from its overview inside ResourceID.[Documentation to create storage credentials](https://learn.microsoft.com/en-us/azure/databricks/connect/unity-catalog/storage-credentials?source=recommendations).
+6. 
 
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
