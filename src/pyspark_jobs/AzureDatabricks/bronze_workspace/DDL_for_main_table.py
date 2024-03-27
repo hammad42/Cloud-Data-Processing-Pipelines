@@ -16,7 +16,7 @@
 # MAGIC   CONSTRAINT pk_employees PRIMARY KEY (emp_no)
 # MAGIC )
 # MAGIC USING DELTA
-# MAGIC PARTITIONED BY (hire_date)
+# MAGIC PARTITIONED BY (hire_date);
 
 # COMMAND ----------
 
@@ -32,7 +32,7 @@
 # MAGIC   dept_name VARCHAR(255) NOT NULL,
 # MAGIC   CONSTRAINT pk_department PRIMARY KEY (dept_no)
 # MAGIC )
-# MAGIC USING DELTA
+# MAGIC USING DELTA;
 
 # COMMAND ----------
 
@@ -51,7 +51,7 @@
 # MAGIC   CONSTRAINT FK_dept_manager_departments FOREIGN KEY (dept_no) REFERENCES bronze.main_tables.departments (dept_no) ,
 # MAGIC   CONSTRAINT PK_dept_manager PRIMARY KEY (emp_no, dept_no) 
 # MAGIC )
-# MAGIC USING DELTA
+# MAGIC USING DELTA;
 
 # COMMAND ----------
 
@@ -87,7 +87,7 @@
 # MAGIC   FOREIGN KEY (emp_no) REFERENCES bronze.main_tables.employees (emp_no) ,
 # MAGIC   PRIMARY KEY (emp_no,title, from_date)
 # MAGIC )
-# MAGIC USING DELTA
+# MAGIC USING DELTA;
 
 # COMMAND ----------
 
@@ -105,7 +105,7 @@
 # MAGIC     FOREIGN KEY (emp_no) REFERENCES bronze.main_tables.employees (emp_no),
 # MAGIC     PRIMARY KEY (emp_no, from_date)
 # MAGIC ) 
-# MAGIC USING DELTA
+# MAGIC USING DELTA;
 
 # COMMAND ----------
 
