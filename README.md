@@ -125,7 +125,7 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
     USING DELTA;
     ```
 
-
+Link ![Bronze_DDL_for_main_tables](./DDL/Azure/AzureDatabricks/Bronze/main/DDL_for_main_table.py).
 
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
