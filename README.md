@@ -45,7 +45,7 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
 2. Create your Storage account.
 3. Create three containers inside your storage account 🥉Bronze 🥈Silver🥇Golde
 4. Give Storage Blob Data Contributor role to your access connector which we create on step 1 ![adding role to your access connector](./images/Azure_Databricks_pipeline/assign_role_to_connector.png).
-5. In your Databricks catalog open External Data and create storage credential, you need to give connector Id of your azure databricks connector you can copy it from its overview inside ResourceID.[Documentation to create storage credentials](https://learn.microsoft.com/en-us/azure/databricks/connect/unity-catalog/storage-credentials?source=recommendations).
+5. In your Databricks catalog open External Data and create storage credential, you need to give connector Id of your azure databricks connector you can copy it from its overview inside ResourceID. ![Documentation to create storage credentials](https://learn.microsoft.com/en-us/azure/databricks/connect/unity-catalog/storage-credentials?source=recommendations).
 6. After creating storage credential now we can create external location to fetch and load data from our containers. for this we need to create 3 external location bronze, silver, gold. ![As shown in picture](./images/Azure_Databricks_pipeline/external_location.png). [Documentation to create external connection](https://learn.microsoft.com/en-us/azure/databricks/sql/language-manual/sql-ref-external-locations?source=recommendations) or alternatively you can use below script.
 
     ```SQL
@@ -125,7 +125,7 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
     USING DELTA;
     ```
 
-Link ![Bronze_DDL_for_main_tables](./DDL/Azure/AzureDatabricks/Bronze/main/DDL_for_main_table.py).
+    Link ![Bronze DDL for main tables](./DDL/Azure/AzureDatabricks/Bronze/main/DDL_for_main_table.py).
 
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
