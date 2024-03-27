@@ -56,8 +56,75 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
 
 7. Create federated connection with your Azure SQL database for this go to external data then go to connections here you need to give your connection name connection type like sql server then test the connection and create it.
 8. At this stage we have created all the external connection now we need to create catalog and schema for our connection so we can easily fetch or load data in them.
-9. we need to create 4 catalogs bronze, silver, gold, my_transactional_data, for this we need to give catalog name its type and its external location which we already created in step6. ![create catalog](./images/Azure_Databricks_pipeline/catalog.png). As external location already created it will give you hint when cretaing catalog.
-10. After creating catalog we need to create schema main_table and config_table for each bronze, silver and gold.
+9. we need to create 4 catalogs bronze, silver, gold, my_transactional_data, for this we need to give catalog name its type and its external location which we already created in step6. ![create catalog](./images/Azure_Databricks_pipeline/catalog.png). As external location already created it will give you hint when creating catalog.
+10. After creating catalog we need to create schema main_tables and config_tables for each bronze, silver and gold.
+11. For populating these schemas we need to make tables which store our data. To accomplish it we use DDL to create tables across each layer.
+12. DDL use for main tables inside Bronze layer.
+
+    ```SQL
+    CREATE TABLE bronze.main_tables.employees
+    (
+      emp_no INT NOT NULL,
+      birth_date DATE,
+      first_name VARCHAR(255),
+      last_name VARCHAR(255),
+      gender CHAR(1),
+      hire_date DATE,
+      CONSTRAINT pk_employees PRIMARY KEY (emp_no)
+    )
+    USING DELTA
+    PARTITIONED BY (hire_date);
+
+    CREATE TABLE bronze.main_tables.departments
+    (
+      dept_no CHAR(4) NOT NULL,
+      dept_name VARCHAR(255) NOT NULL,
+      CONSTRAINT pk_department PRIMARY KEY (dept_no)
+    )
+    USING DELTA;
+
+    CREATE TABLE bronze.main_tables.dept_manager (
+    emp_no INT NOT NULL,
+    dept_no CHAR(4) NOT NULL,
+    from_date DATE NOT NULL,
+    to_date DATE NOT NULL,
+    CONSTRAINT FK_dept_manager_employees FOREIGN KEY (emp_no) REFERENCES bronze.main_tables.employees (emp_no) ,
+    CONSTRAINT FK_dept_manager_departments FOREIGN KEY (dept_no) REFERENCES bronze.main_tables.departments (dept_no) ,
+    CONSTRAINT PK_dept_manager PRIMARY KEY (emp_no, dept_no) 
+    )
+    USING DELTA;
+
+    CREATE TABLE bronze.main_tables.dept_emp (
+      emp_no      INT             NOT NULL,
+      dept_no CHAR(4) NOT NULL,
+      from_date   DATE            NOT NULL,
+      to_date     DATE            NOT NULL,
+      FOREIGN KEY (emp_no)  REFERENCES bronze.main_tables.employees,
+      FOREIGN KEY (dept_no) REFERENCES bronze.main_tables.departments ,
+      PRIMARY KEY (emp_no,dept_no)
+    );
+
+    CREATE TABLE bronze.main_tables.titles (
+      emp_no      INT             NOT NULL,
+      title       VARCHAR(50)     NOT NULL,
+      from_date   DATE            NOT NULL,
+      to_date     DATE,
+      FOREIGN KEY (emp_no) REFERENCES bronze.main_tables.employees (emp_no) ,
+      PRIMARY KEY (emp_no,title, from_date)
+    )
+    USING DELTA;
+
+    CREATE TABLE bronze.main_tables.salaries (
+        emp_no      INT             NOT NULL,
+        salary      INT             NOT NULL,
+        from_date   DATE            NOT NULL,
+        to_date     DATE            NOT NULL,
+        FOREIGN KEY (emp_no) REFERENCES bronze.main_tables.employees (emp_no),
+        PRIMARY KEY (emp_no, from_date)
+    ) 
+    USING DELTA;
+    ```
+
 
 
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>

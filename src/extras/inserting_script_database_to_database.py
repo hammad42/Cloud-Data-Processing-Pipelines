@@ -4,10 +4,10 @@ def insertion(table):
     import pandas as pd 
     import os
 
-    database_username = os.environ.get("database_username")
-    database_password = os.environ.get("database_password")
-    database_name = os.environ.get("database_name")
-    database_host = os.environ.get("database_host") # Find this in your instance details
+    database_username = os.environ.get("database_username_local")
+    database_password = os.environ.get("database_password_local")
+    database_name = os.environ.get("database_name_local")
+    database_host = os.environ.get("database_host_local") # Find this in your instance details
 
     database_username_azure = os.environ.get("database_username_azure")
     database_password_azure = os.environ.get("database_password_azure")
