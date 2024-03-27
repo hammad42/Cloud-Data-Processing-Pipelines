@@ -6,10 +6,10 @@ import os
 
 timestamp = pd.Timestamp.now()
 
-database_username = os.environ.get("database_username")
-database_password = os.environ.get("database_password")
-database_name = os.environ.get("database_name")
-database_host = os.environ.get("database_host") # Find this in your instance details
+database_username = os.environ.get("database_username_local")
+database_password = os.environ.get("database_password_local")
+database_name = os.environ.get("database_name_local")
+database_host = os.environ.get("database_host_local") # Find this in your instance details
 
 database_username_azure = os.environ.get("database_username_azure")
 database_password_azure = os.environ.get("database_password_azure")
@@ -30,7 +30,7 @@ try:
 except sqlalchemy.exc.OperationalError as e:
     print(f"Connection failed with local: {e}")
 
-engine_url = f'mssql+pyodbc://{database_username_azure}:{database_password_azure}@{database_host_azure}/{database_name_azure}?driver=ODBC+Driver+17+for+SQL+Server'
+engine_url = f'mssql+pyodbc://{database_username_azure}:{database_password_azure}@{database_host_azure}/{database_name_azure}?driver=ODBC+Driver+18+for+SQL+Server'
 
 # Create the engine
 engine = create_engine(engine_url)
