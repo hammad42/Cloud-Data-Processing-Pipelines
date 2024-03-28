@@ -159,7 +159,7 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
 
       ```
 
-    Link ![Bronze DDL for config tables](./DDL/Azure/AzureDatabricks/Bronze/config/DDL_for_config_table.py).
+    Link [Bronze DDL for config tables](./DDL/Azure/AzureDatabricks/Bronze/config/DDL_for_config_table.py).
 
 14. DDL use for main tables inside Silver layer.
 
@@ -188,13 +188,19 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
     ```
 
 16. Now we created all of our tables in all layers. Its time to  populate them with data through ETL process. For this we need to design pipeline in such a way which fetches data from transactional database, load into bronze layer, after bronze data move to silver layer then silver to gold and finally in powerBI ![pipeline](./images/Azure_Databricks_pipeline/pipeline.png)
-17. For creating a pipeline first we need to fetch data from transactional database to bronze zone. !["Loading data into bronze layer"](./src/pyspark_jobs/AzureDatabricks/bronze_workspace/ETL.py)
+17. For creating a pipeline first we need to fetch data from transactional database to bronze zone. ["Loading data into bronze layer"](./src/pyspark_jobs/AzureDatabricks/bronze_workspace/ETL.py)
 
-18. After populating bronze layer we load data into silver layer using sql script. !["Loading data into silver layer"](./src/pyspark_jobs/AzureDatabricks/silver_workspace/joining_tables.py).
+18. After populating bronze layer we load data into silver layer using sql script. ["Loading data into silver layer"](./src/pyspark_jobs/AzureDatabricks/silver_workspace/joining_tables.py).
 
-19. We have clean and joined data in our silver zone now our task to aggregate our data, to accomplish it we created gold zone. !["Loading data into gold layer"](./src/pyspark_jobs/AzureDatabricks/gold_workspace/Highest_salaries.py).
+19. We have clean and joined data in our silver zone now our task to aggregate our data, to accomplish it we created gold zone. ["Loading data into gold layer"](./src/pyspark_jobs/AzureDatabricks/gold_workspace/Highest_salaries.py).
 20. After creating all the scripts our task is to run all these scipts on sequential manner at particuler timezone for this I orchestrate a pipeline in job runs. ![orchestrate](./images/Azure_Databricks_pipeline/orchestrate.png)
-21. 
+21. Now we have fully aggregated data ready our next task is to visualize this data for this we use powerBI.
+22. For connecting with powerBI we need to Partner Connect and select Microsoft PowerBI it will download a connection file in your local directory. ![connection_file](./images/Azure_Databricks_pipeline/connect_powerBi.png)
+23. After designing your report you can publish it on powerBI service. ![Visualization](images/Azure_Databricks_pipeline/Visualization.png)
+
+## Pipeline Architecture <a id="azure-data-pipeline-architecture"></a>
+
+  ![pipeline](./images/Azure_Databricks_pipeline/pipeline.png)
 
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
