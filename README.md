@@ -190,6 +190,10 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
 16. Now we created all of our tables in all layers. Its time to  populate them with data through ETL process. For this we need to design pipeline in such a way which fetches data from transactional database, load into bronze layer, after bronze data move to silver layer then silver to gold and finally in powerBI ![pipeline](./images/Azure_Databricks_pipeline/pipeline.png)
 17. For creating a pipeline first we need to fetch data from transactional database to bronze zone. !["Loading data into bronze layer"](./src/pyspark_jobs/AzureDatabricks/bronze_workspace/ETL.py)
 
+18. After populating bronze layer we load data into silver layer using sql script. !["Loading data into silver layer"](./src/pyspark_jobs/AzureDatabricks/silver_workspace/joining_tables.py).
+
+19. We have clean and joined data in our silver zone now our task to aggregate our data, to accomplish it we created gold zone. !["Loading data into gold layer"](./src/pyspark_jobs/AzureDatabricks/gold_workspace/Highest_salaries.py)
+
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
 This pipeline fetches data from the MySql transactional database after transformation it loads data into bigquery.
