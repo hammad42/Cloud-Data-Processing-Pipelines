@@ -129,37 +129,65 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
 
 13. DDL use for config tables inside Bronze layer.
 
-  ```SQL
-  CREATE TABLE bronze.config_tables.configurations(
-    table_name VARCHAR(255),
-    checkmark INT
-  )
-  USING DELTA;
+      ```SQL
+      CREATE TABLE bronze.config_tables.configurations(
+        table_name VARCHAR(255),
+        checkmark INT
+      )
+      USING DELTA;
 
-  INSERT INTO bronze.config_tables.configurations(
-    table_name ,
-    checkmark
-  )
-  VALUES
-  (
-    'employees',0
-  ),
-  (
-    'dept_emp',0
-  ),
-  (
-    'dept_manager',0
-  ),
-  (
-    'salaries',0
-  ),
-  (
-    'titles',0
-  )
+      INSERT INTO bronze.config_tables.configurations(
+        table_name ,
+        checkmark
+      )
+      VALUES
+      (
+        'employees',0
+      ),
+      (
+        'dept_emp',0
+      ),
+      (
+        'dept_manager',0
+      ),
+      (
+        'salaries',0
+      ),
+      (
+        'titles',0
+      )
 
-  ```
-  
-  Link ![Bronze DDL for config tables](./DDL/Azure/AzureDatabricks/Bronze/config/DDL_for_config_table.py).
+      ```
+
+    Link ![Bronze DDL for config tables](./DDL/Azure/AzureDatabricks/Bronze/config/DDL_for_config_table.py).
+
+14. DDL use for main tables inside Silver layer.
+
+    ```SQL
+    CREATE TABLE silver.main_table.joined_data
+    (
+      first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    emp_no INT NOT NULL,
+    dept_name VARCHAR(255) NOT NULL,
+    from_date DATE NOT NULL,
+    salary INT NOT NULL
+    );
+    ```
+
+15. DDL use for main tables inside Gold layer.
+
+    ```SQL
+
+    CREATE TABLE gold.main_tables.average_salaries(
+    dept_name VARCHAR(255) NOT NULL,
+    salary FLOAT NOT NULL
+    )
+    USING DELTA
+
+    ```
+
+16. Now we created all of our tables in all layers 
 
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
