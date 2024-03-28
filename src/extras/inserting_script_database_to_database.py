@@ -22,14 +22,14 @@ def insertion(table):
     db1_engine = create_engine(db1_connection_string)
 
     # **Database 2 (Azure SQL Server - Destination)**
-    db2_engine_url = f'mssql+pyodbc://{database_username_azure}:{database_password_azure}@{database_host_azure}/{database_name_azure}?driver=ODBC+Driver+17+for+SQL+Server'
+    db2_engine_url = f'mssql+pyodbc://{database_username_azure}:{database_password_azure}@{database_host_azure}/{database_name_azure}?driver=ODBC+Driver+18+for+SQL+Server'
     db2_engine = create_engine(db2_engine_url)
 
     # **1. Query Data from Database 1**
     query = """
     SELECT *
     FROM {}
-    where emp_no >= 11350 and emp_no < 11550
+    where emp_no >= 11550 and emp_no < 12000
     """.format(table)
     print(query)
     try:
