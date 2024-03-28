@@ -192,7 +192,9 @@ In this pipeline, we implement a Databricks Medallion architecture to integrate 
 
 18. After populating bronze layer we load data into silver layer using sql script. !["Loading data into silver layer"](./src/pyspark_jobs/AzureDatabricks/silver_workspace/joining_tables.py).
 
-19. We have clean and joined data in our silver zone now our task to aggregate our data, to accomplish it we created gold zone. !["Loading data into gold layer"](./src/pyspark_jobs/AzureDatabricks/gold_workspace/Highest_salaries.py)
+19. We have clean and joined data in our silver zone now our task to aggregate our data, to accomplish it we created gold zone. !["Loading data into gold layer"](./src/pyspark_jobs/AzureDatabricks/gold_workspace/Highest_salaries.py).
+20. After creating all the scripts our task is to run all these scipts on sequential manner at particuler timezone for this I orchestrate a pipeline in job runs. ![orchestrate](./images/Azure_Databricks_pipeline/orchestrate.png)
+21. 
 
 ## --> TRANSACTIONAL DATA TO BIGQUERY <a id="transactional-data-to-bigquery"></a>
 
